@@ -53,6 +53,8 @@ def main():
     # client = factorio_rcon.RCONClient("192.168.0.16", 27015, passw)
     client = factorio_rcon.RCONClient("127.0.0.1", 27015, passw)
     #response = client.send_command("/help")
+    # response = client.send_command("/help")
+
     response = client.send_command(f'/c game.speed={factor}')
 
     print(response)

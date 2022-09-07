@@ -51,7 +51,7 @@ async def on_message(message):
     if message.author == disc_client.user:
         return
 
-    if message.content.startswith('/c'):
+    if message.content.startswith('/c '):
 
         factorio_client = factorio_rcon.RCONClient("127.0.0.1", 27015, RCON_PASS)
 
