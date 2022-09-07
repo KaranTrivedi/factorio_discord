@@ -1,0 +1,37 @@
+[Unit]
+Description=Service
+#After=multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/karan/projects/factorio_discord
+ExecStart=/home/karan/projects/factorio_discord/venv/bin/python /home/karan/projects/factorio_discord/factorio_bot.py
+ExecReload=/bin/kill -HUP $MAINPID
+User=karan
+Group=karan
+
+[Install]
+WantedBy=multi-user.target
+
+# Optional settings to allow your script to auto restart incase of failure.
+# Restart=always
+# TimeoutStartSec=10
+# RestartSec=10
+
+# Copy this file from the service folder using these commands
+# Edit the file here for future uses, and use issue the command to override the existing file.
+# sudo cp /home/karan/projects/factorio_discord/service/factorio_discord.service /lib/systemd/system/
+
+# sudo systemctl daemon-reload
+# sudo systemctl restart factorio_discord.service
+# Use above commands to reload and restart service.
+
+# Issue this command once to make your script wake up and run on startup.
+# sudo systemctl enable factorio_discord.service
+
+# Commands for starting, stopping, restarting and checking status of your script.
+# sudo systemctl start factorio_discord.service
+# sudo systemctl stop factorio_discord.service
+# sudo systemctl restart factorio_discord.service
+# sudo systemctl status factorio_discord.service
+
