@@ -14,9 +14,13 @@ import factorio_rcon
 #Define config and logger.
 CONFIG = configparser.ConfigParser()
 CONFIG.read("conf/config.ini")
-SECTION = "factorio_discord"
-RCON_PASS = CONFIG[SECTION]["passw"]
-DISC_TOKEN = CONFIG[SECTION]["token"]
+SECTION = "factorio"
+
+RCON_PASS = CONFIG["factorio"]["passw"]
+RCON_HOST = CONFIG["factorio"]["host"]
+RCON_PORT = CONFIG["factorio"]["port"]
+
+DISC_TOKEN = CONFIG["discord"]["token"]
 
 logger = logging.getLogger(SECTION)
 
@@ -24,8 +28,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 disc_client = discord.Client(intents=intents)
-factorio_client = factorio_rcon.RCONClient("127.0.0.1", 27015, RCON_PASS)
-
+    
 class Factorio_discord:
     """
     Create sample class
@@ -53,7 +56,7 @@ async def on_message(message):
 
     if message.content.startswith('/c '):
 
-        factorio_client = factorio_rcon.RCONClient("127.0.0.1", 27015, RCON_PASS)
+        factorio_client = factorio_rcon.RCONClient(RCON_HOST, RCON_PORT, RCON_PASS)
 
         await message.channel.send('Executing command..')
         response = factorio_client.send_command(f'{message.content}')
